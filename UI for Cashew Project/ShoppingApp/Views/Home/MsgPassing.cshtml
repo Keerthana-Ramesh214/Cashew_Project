@@ -1,0 +1,52 @@
+﻿@model IEnumerable<ShoppingApp.Models.ContactUs>
+
+@{
+    ViewData["Title"] = "MsgPassing";
+}
+
+
+<style>
+    th {
+        background-color: cadetblue;
+    }
+</style>
+
+
+<h1>Hey!!!You have some Messages.....</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.MailId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.Body)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.MailId)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.Body)
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

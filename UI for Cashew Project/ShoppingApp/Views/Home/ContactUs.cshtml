@@ -1,0 +1,107 @@
+﻿@model ShoppingApp.Models.ContactUs
+
+@{
+    ViewData["Title"] = "ContactUs";
+}
+
+
+
+<style>
+    {
+        box-sizing: border-box;
+    }
+
+    input[type=text], select, textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+    }
+
+    input[type=submit] {
+        background-color: #04AA6D;
+        color: white;
+        padding: 12px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    .container {
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 10px;
+    }
+
+    .column {
+        float: left;
+        width: 50%;
+        margin-top: 6px;
+        padding: 20px;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .column, input[type=submit] {
+        width: 100%;
+        margin-top: 0;
+    }
+</style>
+
+
+
+<div class="container">
+    <div style="text-align:justify">
+        <h2><b>Contact Us</b></h2>
+    </div>
+    <div class="row">
+
+        <div class="col-7">
+            <form asp-action="ContactUs">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="MailId" class="control-label"></label>
+                    <input asp-for="MailId" type="email" class="form-control" />
+                    <span asp-validation-for="MailId" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Name" class="control-label"></label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Subject" class="control-label"></label>
+                    <input  asp-for="Subject" class="form-control" />
+                    <span asp-validation-for="Subject" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Body" class="control-label"></label>
+                    <textarea placeholder="Write something.." asp-for="Body" style="height:170px" class="form-control" ></textarea>
+                    <span asp-validation-for="Body" class="text-danger"></span>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div class="col-5">
+            <br />
+            <img src="https://images.unsplash.com/photo-1523969178000-24fd3f56b623?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjB8fGNhc2hldyUyMG51dHxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" style="width:100%">
+        </div>
+    </div>
+</div>
+
+@if (ViewBag.success != null) { 
+<div class="alert alert-success">
+   Thankyou!!! For your Message.
+</div>
+}
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

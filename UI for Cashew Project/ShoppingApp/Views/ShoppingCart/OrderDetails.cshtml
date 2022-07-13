@@ -1,0 +1,67 @@
+﻿@model ShoppingApp.Models.OrderDetail
+
+@{
+    ViewData["Title"] = "OrderDetails";
+}
+<div class="jumbotron" style="background-color:lightgreen">
+    <h1 class="display-4">Ordered Successfully!!!</h1>
+    <p class="lead"><b>Thankyou for trusting us...:)</b></p>
+    <hr class="my-4">
+    <dl class="row">
+        <dt class="col-sm-2">
+            <b>
+                @Html.DisplayNameFor(model => model.OrderId)
+            </b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderId)
+        </dd>
+
+        <dt class="col-sm-2">
+            <b>
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDate)
+        </dd>
+        <dt class="col-sm-2">
+            <b>
+                @Html.DisplayNameFor(model => model.OrderDeliveryDate)
+            </b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderDeliveryDate)
+        </dd>
+        <dt class="col-sm-2">
+            <b>
+                @Html.DisplayNameFor(model => model.CustomerMobNo)
+            </b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CustomerMobNo)
+        </dd>
+        <dt class="col-sm-2">
+            <b>
+                @Html.DisplayNameFor(model => model.OrderTotalAmount)
+            </b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OrderTotalAmount)
+        </dd>
+        <dt class="col-sm-2">
+            <b>
+                @Html.DisplayNameFor(model => model.QuantityOrdered)
+            </b>
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.QuantityOrdered)
+        </dd>
+
+    </dl>
+
+    <p>
+        <a class="btn btn-primary btn-lg" asp-action="ProductsOrdered" asp-controller="ShoppingCart" role="button">More details</a>
+    </p>
+</div>
+

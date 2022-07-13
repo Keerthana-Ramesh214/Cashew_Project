@@ -1,0 +1,144 @@
+﻿@using Microsoft.AspNetCore.Http;
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - ShoppingApp</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<style>
+    body{
+        font-family:Georgia, 'Times New Roman', Times, serif;
+
+    }
+    .topnav {
+        background-color:white;
+        overflow: hidden;
+    }
+
+        /* Style the links inside the navigation bar */
+        .topnav a {
+            float: left;
+            color: black;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            
+        }
+
+            /* Change the color of links on hover */
+            .topnav a:hover {
+                background-color: #ddd;
+                color: black;
+            }
+
+            /* Create a right-aligned (split) link inside the navigation bar */
+            .topnav a.split {
+                float: right;
+                background-color: white;
+                color: black;
+            }
+            .topnav a.split:hover {
+                float: right;
+                background-color: #f2f2f2;
+                color: white;
+            }
+
+
+</style>
+
+<body>
+
+    <header>
+        @{
+            ViewBag.PhoneNumber = @HttpContextAccessor.HttpContext.Session.GetString("UserNum");
+            ViewBag.Admin = @HttpContextAccessor.HttpContext.Session.GetString("Admin");
+            if ((ViewBag.Admin) != Convert.ToString(0) && ViewBag.Admin != null)
+            {
+                <div class="topnav border border-dark " style="background-color: cadetblue">
+                    <a><b>AKSHAYA CASHEWS</b></a>
+                    <a asp-action="AdminDashboard" asp-controller="Admin">Home</a>
+
+
+
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right">
+                        More
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" asp-action="OrderDetails" asp-controller="Admin" style="text-align:left">Order Details</a>
+                        <a class="dropdown-item" asp-action="CustomerDetails" asp-controller="Admin" style="text-align: left">Customer Details</a>
+                        <a class="dropdown-item" asp-action="MsgPassing" asp-controller="home" style="text-align: left">Messages</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" asp-action="Loggingout" asp-controller="Admin" style="text-align: left">Logout</a>
+
+                    </div>
+                    <a style="float:right"><b>Hello Keerthana!!!</b></a>
+                </div>
+               
+
+
+            }
+            else
+            {
+                if (Convert.ToInt64(ViewBag.PhoneNumber) == 0)
+                {
+
+                    <div class="topnav border border-dark" style="background-color: cadetblue">
+                        <a><b>AKSHAYA CASHEWS</b></a>
+                        <a asp-action="Index" asp-controller="Products" >Home</a>
+                        <a asp-action="AboutUs" asp-controller="Home" >About Us</a>
+                        <a asp-action="ContactUs" asp-controller="Home">Contact Us</a>
+                        <a asp-action="LoggingIn" asp-controller="Admin" class="split" style="background-color: cadetblue">ADMIN</a>
+                    </div>
+
+                }
+
+                else
+                {
+                    ViewBag.UserName = @HttpContextAccessor.HttpContext.Session.GetString("UserFirstName");
+                    <div class="topnav border border-dark" style="background-color: cadetblue">
+                        <a><b>AKSHAYA CASHEWS</b></a>
+                        <a asp-action="Index" asp-controller="Products">Home</a>
+                        <a href="#news">News</a>
+                        <a href="#contact">Contact</a>
+
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="float:right">
+                            More
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-action="Index" asp-controller="ShoppingCart" style="text-align:left">Cart</a>
+                            <a class="dropdown-item" asp-action="OrderHistory" asp-controller="ShoppingCart" style="text-align: left">Order History</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" asp-action="Logout" asp-controller="UserRegister" style="text-align: left">Logout</a>
+                        </div>
+                        <a style="float:right"><b>Hello @ViewBag.UserName!!!</b></a>
+                    </div>
+                }
+            }
+        }
+
+    </header>
+    <br />
+        <div class="container">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+
+    @*<footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - ShoppingApp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>*@
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

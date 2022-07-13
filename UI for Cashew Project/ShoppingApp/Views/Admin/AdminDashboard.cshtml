@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ShoppingApp.Models.Product>
+
+@{
+    ViewData["Title"] = "AdminDashboard";
+}
+
+
+<style>
+    th {
+        background-color: cadetblue;
+    }
+</style>
+
+<body>
+    <h1>Product Details</h1>
+
+    <p>
+        <a   asp-action="CreateProduct">Create New</a>
+    </p>
+    <table class="table">
+        <thead class="border">
+            <tr class="border">
+                <th class="border">
+                    @Html.DisplayNameFor(model => model.ProductId)
+                </th>
+                <th class="border">
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th class="border">
+                    @Html.DisplayNameFor(model => model.ProductPrice)
+                </th>
+
+                <th class="border">
+                    @Html.DisplayNameFor(model => model.ProductImage)
+                </th>
+                <th>
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody class="border">
+            @foreach (var item in Model)
+            {
+                <tr class="border">
+                    <td class="border">
+                        @Html.DisplayFor(modelItem => item.ProductId)
+                    </td>
+                    <td class="border">
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td class="border">
+                        @Html.DisplayFor(modelItem => item.ProductPrice) INR/Kg
+                    </td>
+
+                    <td class="border">
+                        <img src=@Url.Content(item.ProductImage) style=" height:40px;width:40px">
+                    </td>
+                    <td class="border">
+                        @Html.ActionLink("Edit", "UpdateProducts", new {  id=item.ProductId  }) |
+                        @Html.ActionLink("Details", "Details", new {  id=item.ProductId  }) |
+                        @Html.ActionLink("Delete", "DeleteProduct", new {  id=item.ProductId  })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</body>

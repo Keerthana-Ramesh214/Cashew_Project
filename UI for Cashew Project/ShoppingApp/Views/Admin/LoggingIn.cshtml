@@ -1,0 +1,68 @@
+﻿@model ShoppingApp.Models.AdminDetails
+
+@{
+    ViewData["Title"] = "LoggingIn";
+}
+
+
+
+<body>
+    
+<section >
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 text-black">
+
+                <div class="px-5 ms-xl-4">
+                    <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQuNz7JwDPKRbsE_vHzndGc0mZweS_BO7S5rMhuNfFTwHapmHuTndVibk7dfosHa_AAVo0&usqp=CAU" style="width: 75px; height: 75px" /><h1>ADMIN LOGIN</h1>
+
+                </div>
+                <br />
+                <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+                    <form asp-action="LoggingIn" style="width: 23rem;">
+
+                        <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;"></h3>
+
+                        <div class="form-outline mb-4">
+                            <label asp-for="AdminName" class="control-label"></label>
+                            <input asp-for="AdminName" class="form-control" />
+                            <span asp-validation-for="AdminName" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-outline mb-4">
+                            <label asp-for="AdminPassword" class="control-label"></label>
+                            <input asp-for="AdminPassword" class="form-control" />
+                            <span asp-validation-for="AdminPassword" class="text-danger"></span>
+                        </div>
+
+                    <div class="pt-1 mb-4">
+                        <button class="btn btn-info btn-lg btn-block" type="submit">Login</button>
+                    </div>
+
+                    <p class="small mb-5 pb-lg-2"><a class="text-muted" href="#!">Forgot password?</a></p>
+
+                </form>
+
+            </div>
+
+        </div>
+        <div class="col-sm-6 px-0 d-none d-sm-block">
+            <img src="https://static5.depositphotos.com/1020804/405/i/450/depositphotos_4059470-stock-photo-ripe-cashew-nuts-with-leaves.jpg"
+                 alt="Login image" class="w-100 ml-md-2" style="object-fit: cover; object-position: left;">
+        </div>
+    </div>
+</div>
+</section>
+</body>
+
+
+
+<div>
+    <a asp-action="Index" asp-controller="Products">Back to Home</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

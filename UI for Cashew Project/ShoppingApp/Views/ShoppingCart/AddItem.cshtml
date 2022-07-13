@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ShoppingApp.Models.ShoppingCart>
+
+
+
+@{
+    ViewData["Title"] = "AddItem";
+    int GrandTotal = 0;
+    int Quantity = 0;
+}
+
+<h1>AddItem</h1>
+
+
+<table class="table">
+    <thead>
+        <tr class="border" style="background-color:lightseagreen">
+            <th class="border">
+                @Html.DisplayNameFor(model => model.ItemId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+            <th class="border">
+                Action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            GrandTotal += item.TotalPrice;
+            Quantity += item.Quantity;
+            <tr class="border">
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.ItemId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.ProductPrice)/KG
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Quantity) KG
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.TotalPrice) INR
+                </td>
+                <td>
+                    <a asp-action="DeleteItem" asp-route-id="@item.ItemId">Remove Item</a>
+                </td>
+            </tr>
+        }
+    <tr class="border">
+        <td colspan="4" style="text-align:right" class="border">
+            <h5>Grand Total:</h5>
+            <h5>Total Quantity:</h5>
+        </td>
+
+        <td >
+            <h5>@GrandTotal INR</h5>
+            <h5>@Quantity KGs</h5>
+            
+            
+        </td>
+        
+
+    </tr>
+    </tbody>
+</table>
+<a asp-action="PaymentPage" asp-route-id="@GrandTotal" asp-route-Qty="@Quantity" class="btn btn-outline-success float-right" role="button">Proceed Payment</a>
+<br />
+<a asp-action="Index" asp-controller="Products">Go Back to Products Page</a>

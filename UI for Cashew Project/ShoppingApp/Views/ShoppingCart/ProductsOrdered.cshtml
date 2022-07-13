@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ShoppingApp.Models.ShoppingCart>
+
+@{
+    ViewData["Title"] = "ProductsOrdered";
+}
+
+<style>
+    th {
+        background-color: cadetblue;
+    }
+</style>
+
+<h1>Products Ordered</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.ItemId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.Quantity)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.ItemId)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.Quantity)
+                </td>
+                <td class="border">
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    <a asp-controller="Products" asp-action="Index">Back to Home</a>
+</div>

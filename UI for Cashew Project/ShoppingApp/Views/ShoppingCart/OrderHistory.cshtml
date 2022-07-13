@@ -1,0 +1,67 @@
+﻿@model IEnumerable<ShoppingApp.Models.OrderDetail>
+
+@{
+    ViewData["Title"] = "OrderHistory";
+}
+
+<style>
+    th {
+        background-color: cadetblue;
+    }
+</style>
+<h1>OrderHistory</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.OrderId)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.OrderDate)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.OrderDeliveryDate)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.CustomerMobNo)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.QuantityOrdered)
+            </th>
+            <th class="border">
+                @Html.DisplayNameFor(model => model.OrderTotalAmount)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.OrderId)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.OrderDeliveryDate)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.CustomerMobNo)
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.QuantityOrdered) KG
+            </td>
+            <td class="border">
+                @Html.DisplayFor(modelItem => item.OrderTotalAmount) INR
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+<div>
+    <a asp-controller="Products" asp-action="Index">Back to Home</a>
+</div>
